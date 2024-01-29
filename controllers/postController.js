@@ -32,6 +32,9 @@ module.exports = {
     // create new post ***Need to link to associated user***
     async createPost(req, res) {
     try {
+        const post = await Post.create(
+            req.body
+        );
         const user = await User.findOneAndUpdate(
         {_id: req.params.userId },
         { $addToSet: { posts: req.body.id }},
